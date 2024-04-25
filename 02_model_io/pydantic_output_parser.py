@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from langchain.output_parsers import OutputFixingParser
 from langchain.output_parsers import PydanticOutputParser
 from langchain.schema import HumanMessage
 from pydantic import BaseModel, Field, field_validator
@@ -27,7 +28,9 @@ class Smartphone(BaseModel):
         return field
 
 
-parser = PydanticOutputParser(pydantic_object=Smartphone)
+parser = OutputFixingParser.from_llm(
+    parser=PydanticOutputParser(pydantic_object=Smartphone), llm=chat
+)
 
 result = chat.invoke(
     [
