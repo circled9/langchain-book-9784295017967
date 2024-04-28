@@ -1,5 +1,6 @@
 .chainlit/
 .data/
+.files/
 __pycache__/
 venv/
 
