@@ -1,4 +1,7 @@
+.chainlit/
 .data/
+__pycache__/
 venv/
 
 .env
+chainlit.md
